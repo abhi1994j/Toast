@@ -3,10 +3,14 @@ const vertical = document.querySelector("#vertical");
 const statusmsg = document.querySelector("#status");
 const message = document.querySelector("#message");
 const duration = document.querySelector("#duration");
+const durationOutput = document.querySelector("#duration-output");
 console.log(horizontal.value, vertical.value, statusmsg.value, message);
 
 const btn = document.querySelector("button");
 
+duration.addEventListener("change", (e) => {
+  durationOutput.textContent = e.target.value ;
+});
 btn.addEventListener("click", () => {
     const toastObj = {
         horizontal: horizontal.value,
@@ -67,7 +71,8 @@ function toast(toastObj) {
     toast.style.borderRadius = "0.5rem";
     toast.textContent = toastObj?.message;
     document.body.appendChild(toast);
-    // setTimeout(() => {
-    //     toast.remove();
-    // }, duration * 1000);
+    setTimeout(() => {
+        toast();
+    }, duration);
 }
+ 
